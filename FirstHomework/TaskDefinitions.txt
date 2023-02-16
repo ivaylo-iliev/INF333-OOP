@@ -1,0 +1,1 @@
+Object: a circle in the plane specified with center and radius. Function: intersection points of the circle with the coordinate axes. Operation: addition (+) - the result is the smallest circle containing the two given ones.
