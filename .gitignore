@@ -32,7 +32,6 @@
 *.app
 
 x64/
-.vs/
 
 # Build results
 [Dd]ebug/
