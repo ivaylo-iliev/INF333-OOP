@@ -12,8 +12,8 @@ private:
 	void random_items();
 	void read_from_file();
 
-	float calculate_distance_between_centers();
-	void calculate();
+	void find_intersection_points(Circle& c1, Circle& c2);
+	
 public:
 	void execute();
 	Task1();

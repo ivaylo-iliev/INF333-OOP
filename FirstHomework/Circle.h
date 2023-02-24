@@ -19,9 +19,11 @@ public:
 	void setRadius(int);	
 	const Point getCenter() const;
 	const int getRadius() const;
+	
 
 	friend std::ostream& operator<<(std::ostream& stream, const Circle& circle);
 	friend std::istream& operator>>(std::istream& stream, Circle& circle);
+	friend Circle operator+(const Circle& firstCircle, const Circle& secondCircle);
 };
 
 

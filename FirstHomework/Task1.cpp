@@ -48,7 +48,7 @@ void Task1::manual_items()
 {
 	std::cin >> c1;
 	std::cin >> c2;
-	calculate();
+	find_intersection_points(c1, c2);
 }
 
 void Task1::random_items()
@@ -61,47 +61,8 @@ void Task1::read_from_file()
 
 }
 
-float Task1::calculate_distance_between_centers()
+void Task1::find_intersection_points(Circle& c1, Circle& c2)
 {
-	Point center1 = c1.getCenter();
-	Point center2 = c2.getCenter();
 
-	float x2x1 = std::pow((center2.getX() - center1.getX()), 2);
-	float y2y1 = std::pow((center2.getY() - center1.getY()), 2);
-	float distance = std::sqrt(x2x1 + y2y1);
-	return distance;
 }
 
-void Task1::calculate() {
-	float distance = calculate_distance_between_centers();
-
-	if (distance > (c1.getRadius() + c2.getRadius())) 
-	{
-		std::cout << "The circles are too far apart and do not intersect." << std::endl;
-		return;
-	}
-
-	if (distance < (c1.getRadius() + c2.getRadius())) 
-	{
-		std::cout << "One circle is inside the other and do not intersect." << std::endl;
-		return;
-	}
-
-	if (distance == 0 && c1.getRadius() == c2.getRadius())
-	{
-		std::cout << "The circles are merged and there are an infinite number of points of intersection." << std::endl;
-		return;
-	}
-
-	if (distance == c1.getRadius() + c2.getRadius())
-	{
-		std::cout << "The circles touch and there is a single intersection point." << std::endl;
-		return;
-	}
-
-	if (distance < c1.getRadius() + c2.getRadius())
-	{
-		std::cout << "There are two intersection points." << std::endl;
-		return;
-	}
-}
