@@ -8,7 +8,12 @@ class Util
 public:
 	static bool choice_is_valid(int choice);
 	static std::vector<std::string> read_task_definitions();
-	static void calculate_circle_intersection_points(Circle& c1, Circle& c2, double& d);
-	static double calculate_distance_between_circle_centers(Circle& c1, Circle& c2);
+
+	/*
+	 * offset - The starting point for the range of random numbers
+	 * range - The number of values between first and the last possible random number including the limits
+	 * seed - additional value to modify the seed to get more random values on consequtive calls
+	 */
+	static int random_int(int offset, int range, int seed);
 };
 

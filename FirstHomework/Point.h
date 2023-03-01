@@ -3,17 +3,17 @@
 
 class Point
 {
-	int x;
-	int y;
+	double x;
+	double y;
 public:
 	Point();
-	Point(int, int);
+	Point(double, double);
 	~Point();
 
-	void setX(int);
-	void setY(int);
-	const int getX() const;
-	const int getY() const;
+	void setX(double);
+	void setY(double);
+	const double getX() const;
+	const double getY() const;
 
 	friend std::ostream& operator<<(std::ostream& stream, const Point& point);
 	friend std::istream& operator>>(std::istream& stream, Point& point);

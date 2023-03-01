@@ -21,7 +21,7 @@ int main()
 	do
 	{
 		std::cout << *menu;
-		main_choice = menu->get_selection();
+		std::cin >> main_choice; // = menu->get_selection();
 		Task* task = NULL;
 
 		if (main_choice > 0 && main_choice <= 26)

@@ -104,13 +104,13 @@ int Menu::get_selection()
 {
 	std::string line;
 
-	if (!std::getline(std::cin, line)) {
+	/*if (!std::getline(std::cin, line)) {
 		return MENU_FORCE_EXIT;
 	}
 
 	if (line.empty()) {
 		return MENU_FORCE_EXIT;
-	}
+	}*/
 
 	return std::stoi(line);	
 }

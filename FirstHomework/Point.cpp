@@ -6,7 +6,7 @@ Point::Point()
 	
 }
 
-Point::Point(int x, int y)
+Point::Point(double x, double y)
 {
 	this->x = x;
 	this->y = y;
@@ -14,21 +14,21 @@ Point::Point(int x, int y)
 
 Point::~Point(){}
 
-void Point::setX(int value)
+void Point::setX(double value)
 {
 	this->x = value;
 }
 
-const int Point::getX() const
+const double Point::getX() const
 {
 	return this->x;
 }
 
-void Point::setY(int value) {
+void Point::setY(double value) {
 	this->y = value;
 }
 
-const int Point::getY() const
+const double Point::getY() const
 {
 	return this->y;
 }
