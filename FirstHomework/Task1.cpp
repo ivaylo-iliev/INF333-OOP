@@ -83,6 +83,9 @@ void Task1::read_from_file()
 void Task1::do_calculations()
 {
 	calculate_circle_intersection_points();
+	Circle encompassing_circle = c1 + c2;
+	std::cout << "Smallest encompassing circle is : " << std::endl;
+	std::cout << encompassing_circle << std::endl;
 }
 
 void Task1::calculate_circle_intersection_points()
@@ -163,7 +166,7 @@ Circle operator+(Circle& c1, Circle& c2)
 	double distance = Task1::calculate_distance_between_circle_centers(c1, c2);	
 
 	if (distance == 0 && c1.getRadius() == c2.getRadius())
-	{
+	{		
 		return c1;
 	}
 
@@ -180,9 +183,12 @@ Circle operator+(Circle& c1, Circle& c2)
 	}
 
 	if (distance = c1.getRadius() + c2.getRadius()) {
-		double encompassing_diameter = c1.getRadius() + c2.getRadius();
-		double encompassing_radius = encompassing_diameter / 2;
+		/*
+		 * Since the two circles touch the encompassinc circle radius is equal to the sum of the radii of
+		 * the two circles with the center in the mid point of the distance between the two circle centers.
+		 */
 
+		double encompassing_radius = c1.getRadius() + c2.getRadius();
 		Point p1 = c1.getCenter();
 		Point p2 = c2.getCenter();
 
@@ -190,9 +196,9 @@ Circle operator+(Circle& c1, Circle& c2)
 		double midpoint_y = (p1.getY() + p2.getY()) / 2;
 
 		Point mid_point(midpoint_x, midpoint_y);
+
 		Circle encompassing_circle(mid_point, encompassing_radius);
 		return encompassing_circle;
 	}
-
 }
 
