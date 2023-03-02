@@ -20,7 +20,7 @@ void Task1::execute()
 	do
 	{
 		std::cout << *this->menu;
-		std::cin >> choice; // = menu->get_selection();
+		std::cin >> choice;
 		std::cout << choice << std::endl;
 
 
@@ -116,11 +116,10 @@ void Task1::calculate_circle_intersection_points()
 	double y2 = c2.getCenter().getY();
 	double r2 = c2.getRadius();
 
-	double a = (pow(r1, 2) - pow(r2, 2) + pow(distance, 2)) / (2 * distance);
-	double b = (pow(r2, 2) - pow(r1, 2) + pow(distance, 2)) / (2 * distance);
+	double a = (std::pow(r1, 2) - std::pow(r2, 2) + std::pow(distance, 2)) / (2 * distance);
+	double b = (std::pow(r2, 2) - std::pow(r1, 2) + std::pow(distance, 2)) / (2 * distance);
 
-	double h = sqrt(pow(r1, 2) - pow(a, 2));
-	std::cout << "h: " << h << std::endl;
+	double h = std::sqrt(std::pow(r1, 2) - std::pow(a, 2));
 
 	// Calculate P5
 	double x5 = x1 + (a / distance) * (x2 - x1);
@@ -178,6 +177,21 @@ Circle operator+(Circle& c1, Circle& c2)
 		{
 			return c2;
 		}
+	}
+
+	if (distance = c1.getRadius() + c2.getRadius()) {
+		double encompassing_diameter = c1.getRadius() + c2.getRadius();
+		double encompassing_radius = encompassing_diameter / 2;
+
+		Point p1 = c1.getCenter();
+		Point p2 = c2.getCenter();
+
+		double midpoint_x = (p1.getX() + p2.getX()) / 2;
+		double midpoint_y = (p1.getY() + p2.getY()) / 2;
+
+		Point mid_point(midpoint_x, midpoint_y);
+		Circle encompassing_circle(mid_point, encompassing_radius);
+		return encompassing_circle;
 	}
 
 }
