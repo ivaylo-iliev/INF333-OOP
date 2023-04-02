@@ -9,20 +9,21 @@ private:
 	int radius;
 public:
 	Circle();
-	Circle(Point, int);
-	Circle(int, int, int);
+	Circle(Point, double);
+	Circle(double, double, double);
 
 	~Circle();
 
-	void setCenter(int, int);
+	void setCenter(double, double);
 	void setCenter(Point);
-	void setRadius(int);	
+	void setRadius(double);	
 	const Point getCenter() const;
-	const int getRadius() const;
+	const double getRadius() const;
 	
 
 	friend std::ostream& operator<<(std::ostream& stream, const Circle& circle);
 	friend std::istream& operator>>(std::istream& stream, Circle& circle);
+	friend Circle operator+(const Circle &c1, const Circle &c2);
 	
 };
 

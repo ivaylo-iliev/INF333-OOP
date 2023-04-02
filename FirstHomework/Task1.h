@@ -18,6 +18,5 @@ public:
 	Task1(std::string header_value);
 	void calculate_circle_intersection_points();
 	static double calculate_distance_between_circle_centers(Circle& c1, Circle& c2);
-	friend Circle operator+(const Circle& firstCircle, const Circle& secondCircle);
 };
 
