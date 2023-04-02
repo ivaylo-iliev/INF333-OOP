@@ -18,7 +18,7 @@ public:
 
 	static double find_line_slope(Point p1, Point p2);
 	static double find_line_slope_in_degrees(Point p1, Point p2);
-	static double find_line_slope_in_degrees(double slope_in_percents);
+	static double find_line_slope_in_degrees(double slope_in_radians);
 	static double radians_to_degrees(double radians);
 	static Point calculate_circle_tol_line_intersect_pt(double radius, Point center, double slope_in_degrees);
 	static Circle minimum_enclosing_circle(const std::vector<Point>& points);

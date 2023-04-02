@@ -50,13 +50,13 @@ double Util::find_line_slope(Point p1, Point p2)
 
 double Util::find_line_slope_in_degrees(Point p1, Point p2)
 {
-	double slope_in_percents = Util::find_line_slope(p1, p2);
-	return Util::find_line_slope_in_degrees(slope_in_percents);
+	double slope_in_radians = Util::find_line_slope(p1, p2);
+	return Util::find_line_slope_in_degrees(slope_in_radians);
 }
 
-double Util::find_line_slope_in_degrees(double slope_in_percents)
+double Util::find_line_slope_in_degrees(double slope_in_radians)
 {
-	return Util::radians_to_degrees(std::atan(slope_in_percents));
+	return Util::radians_to_degrees(std::atan(slope_in_radians));
 }
 
 double Util::radians_to_degrees(double radians)
