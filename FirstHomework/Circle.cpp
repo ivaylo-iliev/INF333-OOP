@@ -1,5 +1,6 @@
 #include "Circle.h"
 #include "Util.h"
+#include <iomanip>
 
 Circle::Circle()
 {
@@ -54,7 +55,7 @@ const double Circle::getRadius() const
 std::ostream& operator<<(std::ostream& stream, const Circle& circle)
 {
 	stream << "Center: " << circle.getCenter() << std::endl;
-	stream << "Radius: " << circle.getRadius() << std::endl;
+	stream << std::setprecision(5) << "Radius: " << circle.getRadius() << std::endl;
 	return stream;
 }
 

@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <iomanip>
 
 Point::Point()
 	:x(0), y(0)
@@ -35,7 +36,7 @@ const double Point::getY() const
 
 std::ostream& operator<<(std::ostream& stream, const Point& point)
 {
-	stream << point.getX() << ", " << point.getY();
+	stream << std::setprecision(5) << point.getX() << ", " << point.getY();
 	return stream;
 }
 

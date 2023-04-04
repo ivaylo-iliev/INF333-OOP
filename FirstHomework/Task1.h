@@ -10,13 +10,12 @@ private:
 	
 	void manual_items();
 	void random_items();
-	void read_from_file();
 	void do_calculations();
 public:
 	void execute();
 	Task1();
 	Task1(std::string header_value);
-	void calculate_circle_intersection_points();
+	void calculate_circle_intersection_points(double distance_between_circles);
 	static double calculate_distance_between_circle_centers(Circle& c1, Circle& c2);
 };
 

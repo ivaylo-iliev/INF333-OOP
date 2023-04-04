@@ -1,1 +1,26 @@
 Object: a circle in the plane specified with center and radius. Function: intersection points of the circle with the coordinate axes. Operation: addition (+) - the result is the smallest circle containing the two given ones.
+Object: 2x2 matrix. Function: the determinant of the matrix. Operation: sum (+) of matrices.
+Object: matrix 2x3. Function: the rank of the matrix. Operation: sum (+) of matrices.
+Object: a line in the plane specified by a point and an angle that it makes with the abscissa axis Function: the point of intersection with the abscissa axis Operation: rotate (*) at an angle of 90 degrees around a set point.
+Object: simple fraction. Function: check if the fraction is not an integer. Operation: addition of simple fractions.
+Object: a point in space. Function: the distance from the point to the origin of the coordinate system. Operation: unary minus - gives a point symmetric about the origin.
+Object: a point in the plane. Function: the distance from the point to the origin of the coordinate system. Operation: increment by 1 (++) moves the point by vector (1,1).
+Object: in-plane force specified with application point, direction, and magnitude. Function: change the direction of the force by turning it through a set angle. Operation: adding (+=) to one force another force by the parallelogram rule.
+Subject: book - name of author, title of book, name of publisher and year of publication. Function: returns true if the book was published before the specified year. Operation: comparison for equality (==) of two books.
+Object: student - name, surname and surname, faculty. number, 5 marks. Function: calculate GPA. Operation: comparison (>) by GPA.
+Object: a vector in the plane. Function: magnitude of a vector. Operation: multiplication of a vector by a number (*).
+Object: a vector in space. Function: magnitude of a vector. Operation: sum (+) of vectors.
+Object: voter - name, surname and surname, personal identification number, polling station. Function: checking if the person is eligible to vote. Operation: comparison for equality (==).
+Object: car - brand, color, engine capacity, price. Function: given a number, returns the difference between this number and the price of the car. Operation: comparison (>) according to engine volume.
+Object: lines in the plane defined by 2 points. Function: distance of the line to the origin of the coordinate system. Operation: compare for difference (!=) of two lines.
+Object: a segment in the plane specified by 2 points Function: the length of the segment Operation: check (&) if 2 segments intersect
+Object: segment in space specified by 2 points. Function: the length of the segment. Operation: checking (^) whether the spline intersects any coordinate plane.
+Object: 3rd degree polynomial of x. Function: calculate value of polynomial given x. Operation: sum (+) of two polynomials.
+Object: n x n matrix with elements 0 and 1. Function: number of zeros in the matrix. Operation: elementwise and (&).
+Object: n-dimensional vector with elements 0 and 1. Function: number of 01 pairs in the vector. Operation: elementwise negation (~).
+Object: date - day, month, year. Function: how many days there are between two dates. Operation: add days to a date (+=).
+Object: a line in space defined by 2 points. Function: gives a line symmetrical about the origin. Operation: check for parallelism (||).
+Object: computer - processor, memory, HDD. Function: given 3 numbers - MHz, MB, and GB, returns true if the computer's specs are like that or better. Operation: comparison (>=) by memory.
+Object: worker - name, hourly wage, number of hours worked for the month. Function: returns the monthly salary. Operation: increase the hourly wage (+=) by a set percentage.
+Object: airplane flight - date, time, place, number of passengers. Function: checks if the field is after a specified date. Operation: compare two flights (<) by number of passengers.
+Object: complex number. Function: modulus of a complex number. Operation: addition of complex numbers.

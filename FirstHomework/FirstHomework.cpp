@@ -4,7 +4,9 @@
 #include "Util.h"
 #include "Menu.h"
 #include "Task.h"
+
 #include "Task1.h"
+#include "Task2.h"
 
 int main()
 {
@@ -32,6 +34,9 @@ int main()
 				task = new Task1(task_definitions[0]);
 				task->execute();
 				break;
+			/*case 2:
+				task = new Task2(task_definitions[1]);
+				task->execute();*/
 			default:
 				break;
 

@@ -16,7 +16,6 @@ void Task::initialize_menu(std::string header_value)
 	this->menu->set_header(header_value);
 	this->menu->add_entry("Manual values.");
 	this->menu->add_entry("Random values.");
-	this->menu->add_entry("Read from file");
 	this->menu->add_entry("Back to main menu.");
 }
 

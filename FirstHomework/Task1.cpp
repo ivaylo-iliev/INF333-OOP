@@ -21,8 +21,6 @@ void Task1::execute()
 	{
 		std::cout << *this->menu;
 		std::cin >> choice;
-		std::cout << choice << std::endl;
-
 
 
 		if (choice > 0 && choice < max_index)
@@ -72,46 +70,47 @@ void Task1::random_items()
 	std::cout << c1 << c2 << std::endl;
 
 	do_calculations();
-
-}
-
-void Task1::read_from_file()
-{
-
 }
 
 void Task1::do_calculations()
 {
-	calculate_circle_intersection_points();
-	
-
-	
-
-	//double y_intercept = (c1.getCenter().getX() * slope) - c1.getCenter().getY();
-
-	Circle minimum_enclosing_circle = c1 + c2;
-	std::cout << "Minimum enclosing circle: " << minimum_enclosing_circle << std::endl;
-	//std::cout << "Smallest encompassing circle is : " << std::endl;
-	//std::cout << encompassing_circle << std::endl;
-}
-
-void Task1::calculate_circle_intersection_points()
-{
 	double distance = calculate_distance_between_circle_centers(c1, c2);
 
-	if (distance > (c1.getRadius() + c2.getRadius()))
+	calculate_circle_intersection_points(distance);
+	if ((distance < abs(c1.getRadius() - c2.getRadius())))
+	{
+		if (c1.getRadius() < c2.getRadius())
+			std::cout << "Minimum enclosing circle: " << c2 << std::endl;
+		else
+			std::cout << "Minimum enclosing circle: " << c1 << std::endl;
+		return;
+	} 
+
+	if (distance == 0 && c1.getRadius() == c2.getRadius())
+	{
+		std::cout << "Minimum enclosing circle: " << c1 << std::endl;
+		return;
+	}
+	
+	Circle minimum_enclosing_circle = c1 + c2;
+	std::cout << "Minimum enclosing circle: " << minimum_enclosing_circle << std::endl;
+}
+
+void Task1::calculate_circle_intersection_points(double distance_between_circles)
+{
+	if (distance_between_circles > (c1.getRadius() + c2.getRadius()))
 	{
 		std::cout << "The circles are too far apart and do not intersect." << std::endl;
 		return;
 	}
 
-	if (distance < abs(c1.getRadius() - c2.getRadius()))
+	if (distance_between_circles < abs(c1.getRadius() - c2.getRadius()))
 	{
 		std::cout << "One circle is inside the other and do not intersect." << std::endl;
 		return;
 	}
 
-	if (distance == 0 && c1.getRadius() == c2.getRadius())
+	if (distance_between_circles == 0 && c1.getRadius() == c2.getRadius())
 	{
 		std::cout << "The circles are merged and there are infinite number of intersection points." << std::endl;
 		return;
@@ -126,26 +125,26 @@ void Task1::calculate_circle_intersection_points()
 	double y2 = c2.getCenter().getY();
 	double r2 = c2.getRadius();
 
-	double a = (std::pow(r1, 2) - std::pow(r2, 2) + std::pow(distance, 2)) / (2 * distance);
-	double b = (std::pow(r2, 2) - std::pow(r1, 2) + std::pow(distance, 2)) / (2 * distance);
+	double a = (std::pow(r1, 2) - std::pow(r2, 2) + std::pow(distance_between_circles, 2)) / (2 * distance_between_circles);
+	double b = (std::pow(r2, 2) - std::pow(r1, 2) + std::pow(distance_between_circles, 2)) / (2 * distance_between_circles);
 
 	double h = std::sqrt(std::pow(r1, 2) - std::pow(a, 2));
 
 	// Calculate P5
-	double x5 = x1 + (a / distance) * (x2 - x1);
-	double y5 = y1 + (a / distance) * (y2 - y1);
+	double x5 = x1 + (a / distance_between_circles) * (x2 - x1);
+	double y5 = y1 + (a / distance_between_circles) * (y2 - y1);
 
 
 	// Calculate intersection points P3 and P4
 	Point P3;
-	P3.setX(x5 - ((h * (y2 - y1)) / distance));
-	P3.setY(y5 + ((h * (x2 - x1)) / distance));
+	P3.setX(x5 - ((h * (y2 - y1)) / distance_between_circles));
+	P3.setY(y5 + ((h * (x2 - x1)) / distance_between_circles));
 
 	Point P4;
-	P4.setX(x5 + ((h * (y2 - y1)) / distance));
-	P4.setY(y5 - ((h * (x2 - x1)) / distance));
+	P4.setX(x5 + ((h * (y2 - y1)) / distance_between_circles));
+	P4.setY(y5 - ((h * (x2 - x1)) / distance_between_circles));
 
-	if (distance == r1 + r2) {
+	if (distance_between_circles == r1 + r2) {
 		std::cout << "The circles touch and there is a single intersection point." << std::endl;
 		std::cout << P3 << std::endl;
 		return;

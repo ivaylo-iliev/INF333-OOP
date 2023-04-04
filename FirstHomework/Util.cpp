@@ -22,7 +22,6 @@ std::vector<std::string> Util::read_task_definitions()
 	if (data_file.is_open()) {
 		while (std::getline(data_file, line))
 		{
-			std::cout << line << std::endl;
 			task_definitions.push_back(line);
 		}
 		data_file.close();
@@ -41,7 +40,9 @@ double Util::find_line_slope(Point p1, Point p2)
 {
 	if (p2.getX() - p1.getX() != 0)
 	{
-		double rise_over_run = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());
+		double raise = p2.getY() - p1.getY();
+		double run = p2.getX() - p1.getX();
+		double rise_over_run = raise / run;
 		return std::atan(rise_over_run);
 	}
 
@@ -76,11 +77,11 @@ Point Util::calculate_circle_tol_line_intersect_pt(double radius, Point center, 
 // Helper method to get a circle defined by 3 points
 Point Util::get_circle_center(double x1, double y1, double x2, double y2)
 {
-	double B = std::pow(x1, 2) + std::pow(y1, 2);
-	double C = std::pow(x2, 2) + std::pow(y2, 2);
-	double D = x1 * y1 - y2 * x1;
-	double x_result = (y2 * B - y1 * C) / (2 * D);
-	double y_result = (x1 * C - x2 * B) / (2 * D);
+	double A = std::pow(x1, 2) + std::pow(y1, 2);
+	double B = std::pow(x2, 2) + std::pow(y2, 2);
+	double C = x1 * y1 - y2 * x1;
+	double x_result = (y2 * A - y1 * B) / (2 * C);
+	double y_result = (x1 * B - x2 * A) / (2 * C);
 
 	return Point(x_result, y_result);
 }
@@ -88,30 +89,36 @@ Point Util::get_circle_center(double x1, double y1, double x2, double y2)
 // Function to return the euclidean distance between two points
 double Util::euclidean_distance(const Point& point1, const Point& point2)
 {
-	return std::ceil(std::sqrt(std::pow(point1.getX() - point2.getX(), 2) + pow(point1.getY() - point2.getY(), 2)));
+	double A = std::pow(point1.getX() - point2.getX(), 2);
+	double B = std::pow(point1.getY() - point2.getY(), 2);
+
+	return std::sqrt( A + B);
 }
 
 // Function to return the smallest circle that intersects 2 points
 Circle Util::circle_from(const Point& point1, const Point& point2)
 {
 	// Set the center to be the midpoint of point1 and point2
-	Point result_center = { (point1.getX() + point2.getX()) / 2.0, (point1.getY() + point2.getY()) / 2.0};
+	double x_center = (point1.getX() + point2.getX()) / 2.0;
+	double y_center = (point1.getY() + point2.getY()) / 2.0;
+	Point center(x_center, y_center);
 
 	// Set the radius to be half the distance between the two points
-	return Circle( result_center, euclidean_distance(point1, point2) / 2.0 );
+	double radius = euclidean_distance(point1, point2) / 2.0;
+	return Circle(center, radius);
 }
 
 // Function to return a unique circle that intersects three points
 Circle Util::circle_from(const Point& point1, const Point& point2, const Point& point3)
 {
-	Point temp_center = get_circle_center(point2.getX() - point1.getX(), point2.getY() - point1.getY(), point3.getX() - point1.getX(), point3.getY() - point1.getY());
-	double center_x = temp_center.getX() + point1.getX();
-	double center_y = temp_center.getY() + point1.getY();
+	Point center = get_circle_center(point2.getX() - point1.getX(), point2.getY() - point1.getY(), point3.getX() - point1.getX(), point3.getY() - point1.getY());
+	double x_center = center.getX() + point1.getX();
+	double y_center = center.getY() + point1.getY();
 
-	temp_center.setX(center_x);
-	temp_center.setY(center_y);
+	center.setX(x_center);
+	center.setY(y_center);
 
-	return Circle(temp_center, euclidean_distance(temp_center, point1));
+	return Circle(center, euclidean_distance(center, point1));
 }
 
 Circle Util::minimum_enclosing_circle(const std::vector<Point>& points)
@@ -149,7 +156,7 @@ Circle Util::minimum_enclosing_circle(const std::vector<Point>& points)
 		{
 			for (int k = j + 1; k < point_count; k++)
 			{
-				// Get the circle that intersects P[i], P[j], P[k]
+				// Get the circle that intersects all three points
 				Circle temp = circle_from(points[i], points[j], points[k]);
 
 				// Update the result if the circle encloses all points and has a smaller radius
@@ -180,7 +187,8 @@ bool Util::is_valid_circle(const Circle& circle, const std::vector<Point>& point
 
 bool Util::point_inside_circle(const Circle& circle, const Point& point)
 {
-	return euclidean_distance(circle.getCenter(), point) <= circle.getRadius();
+	// Due to issue in calculation with double values caused by high percision cast to int
+	return (int) euclidean_distance(circle.getCenter(), point) <= (int) circle.getRadius();
 }
 
 
