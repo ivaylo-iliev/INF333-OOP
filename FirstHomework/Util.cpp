@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <random>
 
 
 bool Util::choice_is_valid(int choice)
@@ -30,10 +31,20 @@ std::vector<std::string> Util::read_task_definitions()
 	return task_definitions;
 }
 
-int Util::random_int(int offset, int range, int seed)
+int Util::random_int(int low, int high)
 {
-	std::srand(static_cast<unsigned int>(std::time(nullptr) + seed));
-	return offset + (rand() % range);
+	static std::default_random_engine re{};
+	using distribution = std::uniform_int_distribution<int>;
+	static distribution uid{};
+	return uid(re, distribution::param_type{ low, high });
+}
+
+double Util::random_double(double low, double high)
+{
+	static std::default_random_engine re{};
+	using distribution = std::uniform_real_distribution<double>;
+	static distribution uid{};
+	return uid(re, distribution::param_type{ low, high });
 }
 
 double Util::find_line_slope(Point p1, Point p2)
@@ -189,6 +200,7 @@ bool Util::point_inside_circle(const Circle& circle, const Point& point)
 {
 	// Due to issue in calculation with double values caused by high percision cast to int
 	return (int) euclidean_distance(circle.getCenter(), point) <= (int) circle.getRadius();
+	//return euclidean_distance(circle.getCenter(), point) <= circle.getRadius();
 }
 
 

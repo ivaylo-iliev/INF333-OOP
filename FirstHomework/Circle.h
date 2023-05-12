@@ -6,7 +6,7 @@ class Circle
 {
 private:
 	Point center;
-	int radius;
+	double radius;
 public:
 	Circle();
 	Circle(Point, double);

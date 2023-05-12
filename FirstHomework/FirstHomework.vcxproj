@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="FirstHomework.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuEntry.cpp" />
     <ClCompile Include="Point.cpp" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuEntry.h" />
     <ClInclude Include="Point.h" />

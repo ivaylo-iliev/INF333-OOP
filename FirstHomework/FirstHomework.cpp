@@ -34,9 +34,9 @@ int main()
 				task = new Task1(task_definitions[0]);
 				task->execute();
 				break;
-			/*case 2:
+			case 2:
 				task = new Task2(task_definitions[1]);
-				task->execute();*/
+				task->execute();
 			default:
 				break;
 

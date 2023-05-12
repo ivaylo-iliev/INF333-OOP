@@ -3,45 +3,9 @@
 #include <cmath>
 #include "Util.h"
 
-Task1::Task1()
-{
-	this->initialize_menu("Task1 Header");
-}
-
 Task1::Task1(std::string header_value)
 {
 	this->initialize_menu(header_value);
-}
-
-void Task1::execute()
-{
-	int choice = 0;
-	int max_index = menu->get_max_index() - 1;
-	do
-	{
-		std::cout << *this->menu;
-		std::cin >> choice;
-
-
-		if (choice > 0 && choice < max_index)
-		{
-			switch (choice)
-			{
-			case 1:
-				manual_items();
-				break;
-			case 2:
-				random_items();
-			default: break;
-			}
-		}
-		else 
-		{
-			break;
-		}
-
-
-	} while ( true );
 }
 
 void Task1::manual_items()
@@ -56,16 +20,16 @@ void Task1::random_items()
 {
 	Point c1_center;
 	int max_random_value = 100;
-	c1_center.setX(Util::random_int(0, max_random_value, 0));
-	c1_center.setY(Util::random_int(0, max_random_value, c1_center.getX()));
+	c1_center.setX(Util::random_double(0, max_random_value));
+	c1_center.setY(Util::random_double(0, max_random_value));
 	c1.setCenter(c1_center);
-	c1.setRadius(Util::random_int(0, max_random_value, c1_center.getY()));
+	c1.setRadius(Util::random_double(0, max_random_value));
 
 	Point c2_center;
-	c2_center.setX(Util::random_int(0, max_random_value, c1.getRadius()));
-	c2_center.setY(Util::random_int(0, max_random_value, c2_center.getX()));
+	c2_center.setX(Util::random_double(0, max_random_value));
+	c2_center.setY(Util::random_double(0, max_random_value));
 	c2.setCenter(c2_center);
-	c2.setRadius(Util::random_int(0, max_random_value, c2_center.getY()));
+	c2.setRadius(Util::random_double(0, max_random_value));
 
 	std::cout << c1 << c2 << std::endl;
 
