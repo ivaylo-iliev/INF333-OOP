@@ -2,15 +2,23 @@
 #include <utility>
 #include <iostream>
 
+static const double EPS = 1E-9;
+
 class Matrix
 {
 private:
+	
+
 	int** values;
 	int determinant;
+	int rank;
 	int rows;
 	int columns;
+	int max_number_length;
 
 	void init_empty_matrix();
+	void calculate_max_number_length();
+	
 
 public:
 	Matrix();
@@ -22,7 +30,11 @@ public:
 	int get_column_count();
 	int get_row_count();
 	int** get_matrix_values();
-	int calculate_determinant();
+	void set_values();
+	void set_random_values(int maximum_value);
+	void calculate_determinant();
+	void calculate_rank();
+	void calculate_properties();
 
 	friend std::ostream& operator<<(std::ostream& stream, const Matrix& matrix);
 	friend std::istream& operator>>(std::istream& stream, Matrix& matrix);

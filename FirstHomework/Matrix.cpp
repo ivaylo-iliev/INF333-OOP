@@ -1,6 +1,7 @@
 #include "Matrix.h"
 #include "Util.h"
 #include <iomanip>
+#include <string>
 
 void Matrix::init_empty_matrix()
 {
@@ -10,6 +11,50 @@ void Matrix::init_empty_matrix()
 		this->values[i] = new int[columns];
 	}
 }
+
+void Matrix::calculate_rank()
+{
+	int n = rows;
+	int m = columns;
+
+	if (rows == columns) 
+	{
+		this->rank = NULL;
+		return;
+	}
+
+	int rank = 0;
+	std::vector<bool> row_selected(rows, false);
+	for (int i = 0; i < rows; ++i) {
+		int j;
+		for (j = 0; j < columns; ++j) {
+			if (!row_selected[j] && abs(values[j][i]) > EPS)
+				break;
+		}
+
+		if (j != n) {
+			++rank;
+			row_selected[j] = true;
+			for (int p = i + 1; p < m; ++p)
+				values[j][p] /= values[j][i];
+			for (int k = 0; k < n; ++k) {
+				if (k != j && abs(values[k][i]) > EPS) {
+					for (int p = i + 1; p < m; ++p)
+						values[k][p] -= values[j][p] * values[k][i];
+				}
+			}
+		}
+	}
+	this->rank = rank;
+}
+
+void Matrix::calculate_properties()
+{
+	calculate_determinant();
+	calculate_rank();
+	calculate_max_number_length();
+}
+
 
 Matrix::Matrix()
 {
@@ -32,19 +77,13 @@ void Matrix::init_values(bool random)
 {
 	if (random) 
 	{
-		for (int row_iterator = 0; row_iterator < rows; row_iterator++)
-		{
-			for (int col_iterator = 0; col_iterator < columns; col_iterator++)
-			{
-				values[row_iterator][col_iterator] = Util::random_int(1, 100);
-				determinant = calculate_determinant();
-			}
-		}
+		this->set_random_values(100);
 	}
 	else 
 	{
-
+		this->set_values();
 	}
+	
 }
 
 int Matrix::get_column_count()
@@ -62,8 +101,36 @@ int** Matrix::get_matrix_values()
 	return this->values;
 }
 
-int Matrix::calculate_determinant()
+void Matrix::set_values()
 {
+	Matrix initMatrix(rows, columns);
+	std::cin >> initMatrix;
+	this->values = initMatrix.values;
+	calculate_properties();
+	
+}
+
+void Matrix::set_random_values(int maximum_value)
+{
+	for (int row_iterator = 0; row_iterator < rows; row_iterator++)
+	{
+		for (int col_iterator = 0; col_iterator < columns; col_iterator++)
+		{
+			values[row_iterator][col_iterator] = Util::random_int(0, maximum_value);
+			calculate_properties();
+		}
+	}
+}
+
+void Matrix::calculate_determinant()
+{
+	if (rows != columns)
+	{
+		// Non-square matrices do not have determinants.
+		this->determinant = NULL;
+		return;
+	}
+
 	int col_iterator = 0;
 	int first_diagonal = 1;
 	for (int row_iterator = 0; row_iterator < rows; row_iterator++)
@@ -85,23 +152,31 @@ int Matrix::calculate_determinant()
 		}
 	}
 	
-	return first_diagonal - second_diagnoal;	
+	this->determinant = first_diagonal - second_diagnoal;	
 }
 
 std::ostream& operator<<(std::ostream& stream, const Matrix& matrix)
 {
-	stream << std::endl << "Matrix: " << std::endl;
+	stream << "Matrix: " << std::endl;
+
 	for (int row_iterator = 0; row_iterator < matrix.rows; row_iterator++)
 	{
 		stream << std::setw(2) << std::setfill(' ') << '|';
 		for (int col_iterator = 0; col_iterator < matrix.columns; col_iterator++)
 		{
-			stream << std::setw(4) << matrix.values[row_iterator][col_iterator];
+			stream << std::setw(matrix.max_number_length) << matrix.values[row_iterator][col_iterator];
 		}
 		stream << std::setw(2) << '|' << std::endl;
 	}
 
-	stream << std::endl << "Determinant: " << matrix.determinant << std::endl;
+	if (matrix.determinant != NULL)
+	{
+		stream << std::endl << "Determinant: " << matrix.determinant << std::endl;
+	}
+
+	if (matrix.rows != matrix.columns) {
+		stream << "Rank: " << matrix.rank << std::endl;
+	}
 
 	return stream;
 }
@@ -118,6 +193,8 @@ std::istream& operator>>(std::istream& stream, Matrix& matrix)
 		}
 	}
 
+	matrix.calculate_properties();
+
 	return stream;
 }
 
@@ -125,6 +202,7 @@ Matrix operator+(const Matrix& m1, const Matrix& m2)
 {
 	int rows = m1.rows;
 	int columns = m1.columns;
+	
 	Matrix result(rows, columns);
 
 	for (int row_iterator = 0; row_iterator < rows; row_iterator++) 
@@ -134,6 +212,25 @@ Matrix operator+(const Matrix& m1, const Matrix& m2)
 			result.values[row_iterator][col_iterator] = m1.values[row_iterator][col_iterator] + m2.values[row_iterator][col_iterator];
 		}
 	}
-	result.determinant = result.calculate_determinant();
+
+	result.calculate_properties();
 	return result;
+}
+
+void Matrix::calculate_max_number_length()
+{
+	int length = 1;
+	for (int row_iterator = 0; row_iterator < rows; row_iterator++)
+	{
+		for (int col_iterator = 0; col_iterator < columns; col_iterator++)
+		{
+			int val_size = std::to_string(values[row_iterator][col_iterator]).size();
+
+			if (val_size > length)
+			{
+				length = val_size;
+			}
+		}
+	}
+	max_number_length = length + 1;
 }

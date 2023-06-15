@@ -136,6 +136,7 @@
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="Task1.cpp" />
     <ClCompile Include="Task2.cpp" />
+    <ClCompile Include="Task3.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +148,7 @@
     <ClInclude Include="Task.h" />
     <ClInclude Include="Task1.h" />
     <ClInclude Include="Task2.h" />
+    <ClInclude Include="Task3.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
