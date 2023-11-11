@@ -14,44 +14,13 @@ void Matrix::init_empty_matrix()
 
 void Matrix::calculate_rank()
 {
-	int n = rows;
-	int m = columns;
-
-	if (rows == columns) 
-	{
-		this->rank = NULL;
-		return;
-	}
-
-	int rank = 0;
-	std::vector<bool> row_selected(rows, false);
-	for (int i = 0; i < rows; ++i) {
-		int j;
-		for (j = 0; j < columns; ++j) {
-			if (!row_selected[j] && abs(values[j][i]) > EPS)
-				break;
-		}
-
-		if (j != n) {
-			++rank;
-			row_selected[j] = true;
-			for (int p = i + 1; p < m; ++p)
-				values[j][p] /= values[j][i];
-			for (int k = 0; k < n; ++k) {
-				if (k != j && abs(values[k][i]) > EPS) {
-					for (int p = i + 1; p < m; ++p)
-						values[k][p] -= values[j][p] * values[k][i];
-				}
-			}
-		}
-	}
-	this->rank = rank;
+	
 }
 
 void Matrix::calculate_properties()
 {
 	calculate_determinant();
-	calculate_rank();
+	//calculate_rank();
 	calculate_max_number_length();
 }
 
@@ -174,10 +143,6 @@ std::ostream& operator<<(std::ostream& stream, const Matrix& matrix)
 		stream << std::endl << "Determinant: " << matrix.determinant << std::endl;
 	}
 
-	if (matrix.rows != matrix.columns) {
-		stream << "Rank: " << matrix.rank << std::endl;
-	}
-
 	return stream;
 }
 
@@ -190,9 +155,11 @@ std::istream& operator>>(std::istream& stream, Matrix& matrix)
 		{
 			std::cout << "element[" << i + 1 << "][" << j + 1 << "] = ";
 			stream >> matrix.values[i][j];
+			std::cout << matrix.values[i][j] << std::endl;
 		}
 	}
 
+	std::cout << matrix << std::endl;
 	matrix.calculate_properties();
 
 	return stream;

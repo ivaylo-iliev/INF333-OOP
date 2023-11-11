@@ -2,7 +2,7 @@
 #include <utility>
 #include <iostream>
 
-static const double EPS = 1E-9;
+
 
 class Matrix
 {

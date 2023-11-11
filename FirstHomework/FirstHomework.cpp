@@ -8,6 +8,7 @@
 #include "Task1.h"
 #include "Task2.h"
 #include "Task3.h"
+#include "Task4.h"
 
 int main()
 {
@@ -40,6 +41,9 @@ int main()
 				task->execute();
 			case 3:
 				task = new Task3(task_definitions[2]);
+				task->execute();
+			case 4:
+				task = new Task4(task_definitions[3]);
 				task->execute();
 			default:
 				break;
