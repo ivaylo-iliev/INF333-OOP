@@ -25,5 +25,6 @@ public:
 	static double euclidean_distance(const Point& point1, const Point& point2);
 	static bool is_valid_circle(const Circle& circle, const std::vector<Point>& points);
 	static bool point_inside_circle(const Circle& circle, const Point& point);
+	static double degrees_to_radians(double degrees);
 };
 

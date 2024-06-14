@@ -11,7 +11,6 @@ private:
 	void random_items();
 
 	Point calculateIntersection();
-	Point rotateLine(Point p, double rotationAngleInDegrees);
 
 
 public:

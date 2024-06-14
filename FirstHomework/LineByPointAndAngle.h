@@ -19,8 +19,9 @@ public:
 	Point getPoint();
 	double getAngle();
 	Point calculateIntersectionWithOrdinate();
-	LineByPointAndAngle rotateLine(Point p, double rotationAngleInDegrees);
 
-	LineByPointAndAngle operator*(double rotationAngle);
+	friend LineByPointAndAngle operator*(const LineByPointAndAngle& line, double angle);
+	friend std::ostream& operator<<(std::ostream& stream, const LineByPointAndAngle& line);
+	friend std::istream& operator>>(std::istream& stream, LineByPointAndAngle& line);
 };
 

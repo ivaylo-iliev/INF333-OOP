@@ -203,4 +203,6 @@ bool Util::point_inside_circle(const Circle& circle, const Point& point)
 	//return euclidean_distance(circle.getCenter(), point) <= circle.getRadius();
 }
 
-
+double Util::degrees_to_radians(double degrees) {
+	return degrees * M_PI / 180.0;
+}

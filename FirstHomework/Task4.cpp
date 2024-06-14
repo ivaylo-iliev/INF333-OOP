@@ -1,4 +1,5 @@
 
+#define _USE_MATH_DEFINES
 
 #include "Task4.h"
 #include <cmath>
@@ -7,36 +8,55 @@
 
 Task4::Task4(std::string header_value)
 {
-	this->angle = 0;
 	this->initialize_menu(header_value);
 }
 
 void Task4::manual_items()
 {
+	std::cin >> line;
+	std::cout << line;
+	Point intersectionPoint = this->calculateIntersection();
+	std::cout << "Abscissa intersection point before retoation is: " << intersectionPoint << std::endl;
+
+	intersectionPoint = this->calculateIntersection();
+
+	line = line * 90;
+	std::cout << line;
+	intersectionPoint = calculateIntersection();
+	std::cout << "Abscissa intersection point is: " << intersectionPoint << std::endl;
 }
 
 void Task4::random_items()
 {
 	Point pt = Point(Util::random_double(0, 100), Util::random_double(0, 100));
-	double angle = Util::random_double(0, 360);
-	this->line = LineByPointAndAngle(pt, angle);
+	double angle = Util::random_double(0, 90);
+	line = LineByPointAndAngle(pt, angle);
 
-	//Point intersectionPoint = this->calculateIntersection();
+	std::cout << line;
+	Point intersectionPoint = this->calculateIntersection();
+	std::cout << "Abscissa intersection point before retoation is: " << intersectionPoint << std::endl;
+
+	intersectionPoint = this->calculateIntersection();
+	
+	line = line * 90;
+	std::cout << line;
+	intersectionPoint = calculateIntersection();
+	std::cout << "Abscissa intersection point is: " << intersectionPoint << std::endl;
 }
-
+ 
 Task4::~Task4()
 {
 }
 
-Point Task4::rotateLine(Point p, double rotationAngleInDegrees)
+Point Task4::calculateIntersection()
 {
-	// Convert the rotation angle from degrees to radians
-	double rotationAngleInRadians = rotationAngleInDegrees * M_PI / 180.0;
+	Point pt = this->line.getPoint();
+	double angle = this->line.getAngle();
 
-	// Rotate the point coordinates
-	double x = p.getX() * cos(rotationAngleInRadians) - p.getY() * sin(rotationAngleInRadians);
-	double y = p.getX() * sin(rotationAngleInRadians) + p.getY() * cos(rotationAngleInRadians);
+	double slope = tan(angle * M_PI / 180);
+	double y_intercept = pt.getY() - slope * pt.getX();
+	double x_intercect = -y_intercept / slope;
+	double y_intercect = 0;
 
-	// Return the rotated point
-	return Point(x, y);
+	return Point(x_intercect, y_intercect);
 }

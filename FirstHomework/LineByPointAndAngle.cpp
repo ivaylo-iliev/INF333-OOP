@@ -2,6 +2,8 @@
 
 #include "LineByPointAndAngle.h"
 #include <cmath>
+#include <iomanip>
+#include "Util.h"
 
 LineByPointAndAngle::LineByPointAndAngle()
 {
@@ -11,7 +13,7 @@ LineByPointAndAngle::LineByPointAndAngle()
 
 LineByPointAndAngle::LineByPointAndAngle(Point pt, double angle)
 {
-	this->setPoint(0, 0);
+	this->setPoint(pt);
 	this->setAngle(angle);
 }
 
@@ -57,20 +59,30 @@ Point LineByPointAndAngle::calculateIntersectionWithOrdinate()
 	return Point(x, y);
 }
 
-LineByPointAndAngle LineByPointAndAngle::rotateLine(Point p, double rotationAngleInDegrees)
+LineByPointAndAngle operator*(const LineByPointAndAngle& line, double rotationAngle)
 {
-	// Convert the rotation angle from degrees to radians
-	double rotationAngleInRadians = rotationAngleInDegrees * M_PI / 180.0;
+	double rotationAngleInRadians = Util::degrees_to_radians(rotationAngle);
+	double originalAngleInRadians = Util::degrees_to_radians(line.angle);
 
-	// Rotate the point coordinates
-	double x = p.getX() * cos(rotationAngleInRadians) - p.getY() * sin(rotationAngleInRadians);
-	double y = p.getX() * sin(rotationAngleInRadians) + p.getY() * cos(rotationAngleInRadians);
+	double newAngleInRadians = originalAngleInRadians + rotationAngleInRadians;
 
-	// Return the rotated point
-	return LineByPointAndAngle(Point(x, y), rotationAngleInDegrees);
+	double newAngleInDegrees = Util::radians_to_degrees(newAngleInRadians);
+	return LineByPointAndAngle(line.pt, newAngleInDegrees);
 }
 
-LineByPointAndAngle LineByPointAndAngle::operator*(double rotationAngle)
+std::ostream& operator<<(std::ostream& stream, const LineByPointAndAngle& line)
 {
-	return this->rotateLine(this->pt, rotationAngle);
+	stream << line.pt << std::endl;
+	stream << "Angle with the abscissa : "  << std::setprecision(5) <<  line.angle << std::endl;
+	return stream;
+}
+
+std::istream& operator>>(std::istream& stream, LineByPointAndAngle& line)
+{
+	std::cout << "Enter a point trough the line passes: " << std::endl;
+	stream >> line.pt;
+	std::cout << "Enter the angle with the abscissa: ";
+	stream >> line.angle;
+
+	return stream;
 }

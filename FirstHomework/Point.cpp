@@ -36,7 +36,7 @@ const double Point::getY() const
 
 std::ostream& operator<<(std::ostream& stream, const Point& point)
 {
-	stream << std::setprecision(5) << point.getX() << ", " << point.getY();
+	stream << std::setprecision(5) << "x = " << point.getX() << ", y = " << point.getY();
 	return stream;
 }
 
