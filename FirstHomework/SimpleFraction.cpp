@@ -43,17 +43,14 @@ void SimpleFraction::setFraction(int numerator, int denominator)
 	this->setDenominator(denominator);
 }
 
-void SimpleFraction::checkIsInteger()
+std::string SimpleFraction::checkIsInteger()
 {
-	this->isInteger =  (this->numerator % this->denominator == 0 ? true : false);
+	return (this->numerator % this->denominator == 0 ? "True" : "False");
 }
 
 std::ostream& operator<<(std::ostream& stream, const SimpleFraction& fraction)
 {
-	stream << "The numerator is: " << fraction.getNumerator() << ". ";
-	stream << "The denominator is:  " << fraction.getDenominator() << ". ";
-	stream << (fraction.isInteger ? "Fraction is integer." : "Fraction is not integer.") << std::endl;
-
+	stream << fraction.numerator << '/' << fraction.denominator;	
 	return stream;
 }
 
@@ -85,4 +82,16 @@ std::istream& operator>>(std::istream& stream, SimpleFraction& fraction)
 	fraction.setDenominator(denominator);
 
 	return stream;
+}
+
+SimpleFraction operator+(const SimpleFraction& fraction1, const SimpleFraction& fraction2)
+{
+	SimpleFraction result;
+	result.numerator = fraction1.numerator * fraction2.denominator + fraction2.numerator * fraction1.denominator;
+	result.denominator = fraction1.denominator * fraction2.denominator;
+	int divisor = Util::greatest_common_divisor(result.numerator, result.denominator);
+	result.numerator /= divisor;
+	result.denominator /= divisor;
+
+	return result;
 }

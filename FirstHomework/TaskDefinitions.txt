@@ -2,7 +2,7 @@ Object: a circle in the plane specified with center and radius. Function: inters
 Object: 2x2 matrix. Function: the determinant of the matrix. Operation: sum (+) of matrices.
 Object: matrix 2x3. Function: the rank of the matrix. Operation: sum (+) of matrices.
 Object: a line in the plane specified by a point and an angle that it makes with the abscissa axis Function: the point of intersection with the abscissa axis Operation: rotate (*) at an angle of 90 degrees around a set point.
-Object: simple fraction. Function: check if the fraction is not an integer. Operation: addition of simple fractions.
+Object: simple fraction. Function: check if the fraction is not integer. Operation addition of simple fractions.
 Object: a point in space. Function: the distance from the point to the origin of the coordinate system. Operation: unary minus - gives a point symmetric about the origin.
 Object: a point in the plane. Function: the distance from the point to the origin of the coordinate system. Operation: increment by 1 (++) moves the point by vector (1,1).
 Object: in-plane force specified with application point, direction, and magnitude. Function: change the direction of the force by turning it through a set angle. Operation: adding (+=) to one force another force by the parallelogram rule.

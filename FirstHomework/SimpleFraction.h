@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include "Util.h"
 
 class SimpleFraction
 {
@@ -19,9 +20,10 @@ public:
 	void setDenominator(int);
 	int getDenominator() const;
 	void setFraction(int, int);
-	void checkIsInteger();
+	std::string checkIsInteger();
 
 	friend std::ostream& operator<<(std::ostream& stream, const SimpleFraction& fraction);
-	friend std::istream& operator>>(std::istream& stream, SimpleFraction& fraction);
+	friend std::istream& operator>>(std::istream& stream, SimpleFraction& fraction); 
+	friend SimpleFraction operator+(const SimpleFraction& fraction1, const SimpleFraction& fraction2);
 };
 

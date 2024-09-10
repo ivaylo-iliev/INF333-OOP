@@ -26,5 +26,7 @@ public:
 	static bool is_valid_circle(const Circle& circle, const std::vector<Point>& points);
 	static bool point_inside_circle(const Circle& circle, const Point& point);
 	static double degrees_to_radians(double degrees);
+	static int greatest_common_divisor(int a, int b);
+	static std::string string_join(const std::vector<std::string>& lst, const std::string& delim);
 };
 

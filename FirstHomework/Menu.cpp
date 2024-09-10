@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include <regex>
+#include "Util.h"
 
 Menu::Menu()
 {
@@ -34,6 +35,7 @@ const std::vector<MenuEntry> &Menu::getEntries() const
 
 std::ostream& operator<<(std::ostream& stream, const Menu& menu)
 {
+	stream << std::endl;
 	stream << std::setfill(HEADER_BORDER_CHAR);
 	stream << std::setw(MAX_HEADER_WIDTH) << ' ' <<std::endl;
 	stream << std::setfill(' ');
@@ -44,11 +46,12 @@ std::ostream& operator<<(std::ostream& stream, const Menu& menu)
 	}
 	
 	stream << std::setfill(HEADER_BORDER_CHAR);
-	stream << std::setw(MAX_HEADER_WIDTH) << ' ' <<std::endl;
+	stream << std::setw(MAX_HEADER_WIDTH) << ' ' <<std::endl << std::endl;
 
 	for (MenuEntry entry : menu.getEntries()) {
 		stream << entry << std::endl;
 	}
+	//stream << std::endl;
 	stream << "Please, make a selection: ";
 	return stream;
 }
@@ -64,37 +67,17 @@ void Menu::set_header(std::string value)
 		headerTokens.push_back(token);
 	}
 
-	std::string line;
+	std::vector<std::string> lineTokens;
+	int current_line_size = 0;
 	for(int i = 0; i < headerTokens.size(); i++)
 	{
-		std::string tempToken;
-		if(line.size() > 0)
-		{
-			 tempToken = line + ' ' + headerTokens[i];
-		} 
-		else 
-		{
-			tempToken = headerTokens[i];
-		}
+		lineTokens.push_back(headerTokens[i]);
+		current_line_size += headerTokens[i].length();
 
-
-		if(i == (headerTokens.size() -1)){			
-			this->headerLines.push_back(tempToken);
-			line = "";
-			continue;
-		}
-
-		if(tempToken.length() >= MAX_HEADER_LINE_LENGTH)
-		{
-			this->headerLines.push_back(line);
-			line = "";
-			
-			continue;
-		}
-
-		if(tempToken.length() < MAX_HEADER_LINE_LENGTH)
-		{
-			line = tempToken;
+		if ((i  < headerTokens.size() -1 && current_line_size + headerTokens[i+1].size() > MAX_HEADER_LINE_LENGTH) || i == headerTokens.size() - 1) {
+			this->headerLines.push_back(Util::string_join(lineTokens, " "));
+			lineTokens.clear();
+			current_line_size = 0;
 		}		
 	}
 }
@@ -102,15 +85,6 @@ void Menu::set_header(std::string value)
 int Menu::get_selection()
 {
 	std::string line;
-
-	/*if (!std::getline(std::cin, line)) {
-		return MENU_FORCE_EXIT;
-	}
-
-	if (line.empty()) {
-		return MENU_FORCE_EXIT;
-	}*/
-
 	return std::stoi(line);	
 }
 
