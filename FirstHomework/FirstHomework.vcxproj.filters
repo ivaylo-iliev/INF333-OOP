@@ -54,6 +54,12 @@
     <ClCompile Include="LineByPointAndAngle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Task5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleFraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -90,6 +96,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LineByPointAndAngle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Task5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleFraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
