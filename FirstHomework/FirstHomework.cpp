@@ -10,6 +10,7 @@
 #include "Task3.h"
 #include "Task4.h"
 #include "Task5.h"
+#include "Task6.h"
 
 int main()
 {
@@ -61,6 +62,10 @@ int main()
 				task = new Task5(task_definitions[4]);
 				task->execute();
 				continue;
+			case 6:
+				task = new Task6(task_definitions[5]);
+				task->execute();
+				continue;
 			default:
 				break;
 
@@ -71,7 +76,7 @@ int main()
 
 		if (main_choice == 0)
 		{
-			std::cout << 'Bye!' << std::endl;
+			std::cout << "Bye!" << std::endl;
 			break;
 		}
 	

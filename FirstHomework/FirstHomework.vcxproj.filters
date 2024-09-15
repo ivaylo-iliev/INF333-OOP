@@ -60,6 +60,12 @@
     <ClCompile Include="SimpleFraction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PointInSpace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Task6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -102,6 +108,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimpleFraction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PointInSpace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Task6.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

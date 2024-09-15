@@ -134,6 +134,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuEntry.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="PointInSpace.cpp" />
     <ClCompile Include="SimpleFraction.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="Task1.cpp" />
@@ -141,6 +142,7 @@
     <ClCompile Include="Task3.cpp" />
     <ClCompile Include="Task4.cpp" />
     <ClCompile Include="Task5.cpp" />
+    <ClCompile Include="Task6.cpp" />
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +152,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuEntry.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="PointInSpace.h" />
     <ClInclude Include="SimpleFraction.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="Task1.h" />
@@ -157,6 +160,7 @@
     <ClInclude Include="Task3.h" />
     <ClInclude Include="Task4.h" />
     <ClInclude Include="Task5.h" />
+    <ClInclude Include="Task6.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

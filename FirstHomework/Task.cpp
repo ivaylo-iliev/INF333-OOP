@@ -4,7 +4,7 @@
 
 Task::Task()
 {
-	this->menu = new Menu();
+	menu = new Menu();
 }
 
 Task::~Task()
@@ -14,10 +14,10 @@ Task::~Task()
 
 void Task::initialize_menu(std::string header_value)
 {
-	this->menu->set_header(header_value);
-	this->menu->add_entry("Manual values.");
-	this->menu->add_entry("Random values.");
-	this->menu->add_entry("Back to main menu.");
+	menu->set_header(header_value);
+	menu->add_entry("Manual values.");
+	menu->add_entry("Random values.");
+	menu->add_entry("Back to main menu.");
 }
 
 void Task::execute()

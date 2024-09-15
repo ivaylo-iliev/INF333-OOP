@@ -3,6 +3,7 @@
 
 class Point
 {
+protected:
 	double x;
 	double y;
 public:
