@@ -82,11 +82,10 @@ void Menu::set_header(std::string value)
 	}
 }
 
-int Menu::get_selection()
-{
-	std::string line;
-	return std::stoi(line);	
-}
+//std::istream&  Menu::get_selection()
+//{
+//	return std::cin  	
+//}
 
 int Menu::get_max_index()
 {

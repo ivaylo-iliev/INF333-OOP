@@ -6,6 +6,7 @@ class Task
 private:
 	virtual void manual_items();
 	virtual void random_items();
+	void show_invalid_input_message();
 
 protected:
 	Menu* menu;

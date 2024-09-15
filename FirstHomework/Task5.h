@@ -11,7 +11,5 @@ public:
 	~Task5();
 	void manual_items();
 	void random_items();
-
-	
 };
 

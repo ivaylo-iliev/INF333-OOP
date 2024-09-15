@@ -24,7 +24,7 @@ public:
 	void add_entry(std::string);
 	const std::vector<MenuEntry> &getEntries() const;
 	void set_header(std::string);
-	int get_selection();
+	//std::istream& get_selection();
 	int get_max_index();
 	friend std::ostream& operator<<(std::ostream& stream, const Menu& menu);
 };
