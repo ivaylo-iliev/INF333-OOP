@@ -17,5 +17,7 @@ public:
 	friend std::istream& operator>>(std::istream& stream, PointInSpace& point);
 
 	PointInSpace operator-();
+	PointInSpace& operator++();
+	PointInSpace operator++(int);
 };
 

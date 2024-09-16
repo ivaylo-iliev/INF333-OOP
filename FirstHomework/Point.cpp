@@ -34,6 +34,20 @@ const double Point::getY() const
 	return this->y;
 }
 
+Point& Point::operator++()
+{
+	this->x += 1;
+	this->y += 1;
+	return *this;
+}
+
+Point Point::operator++(int)
+{
+	Point temp = *this;
+	++(*this);
+	return temp;
+}
+
 std::ostream& operator<<(std::ostream& stream, const Point& point)
 {
 	stream << std::setprecision(5) << "x = " << point.getX() << ", y = " << point.getY();

@@ -66,6 +66,9 @@
     <ClCompile Include="Task6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Task7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h">
@@ -114,6 +117,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Task6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Task7.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

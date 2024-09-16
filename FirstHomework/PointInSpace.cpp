@@ -34,6 +34,21 @@ PointInSpace PointInSpace::operator-()
 	return PointInSpace(-this->getX(), -this->getY(), -this->getZ());
 }
 
+PointInSpace& PointInSpace::operator++()
+{
+	this->x += 1;
+	this->y += 1;
+	this->z += 1;
+	return *this;
+}
+
+PointInSpace PointInSpace::operator++(int)
+{
+	PointInSpace temp = *this;
+	++(*this);
+	return temp;
+}
+
 std::ostream& operator<<(std::ostream& stream, const PointInSpace& point)
 {
 	stream << std::setprecision(5) << "x = " << point.getX() << ", y = " << point.getY() << ", z = " << point.getZ();
